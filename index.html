@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     :root {
-      --image1-width: 20vw;
+      --image1-width: 30vw;
     }
 
     body {
@@ -17,12 +17,14 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      overflow: hidden;
     }
 
     .container {
       position: relative;
       width: var(--image1-width);
       height: var(--image1-width);
+      overflow: visible;
     }
 
     /* Glow effect using a pseudo-element */
@@ -31,15 +33,16 @@
       position: absolute;
       top: 50%;
       left: 50%;
-      width: 100%;
-      height: 100%;
+      width: 200%; /* Avoid clipping */
+      height: 200%; /* Avoid clipping */
       transform: translate(-50%, -50%);
       background: url('icon.svg') no-repeat center center;
       background-size: contain;
       filter: blur(60px);
-      opacity: 0.5;
+      opacity: 0.4;
       z-index: -1;
       transition: filter 1s ease-in-out, opacity 1s ease-in-out;
+      background-size: 50%; /* Adjust background size to compensate */
     }
 
     /* Reduce blur on hover */
@@ -88,11 +91,12 @@
 
     @media only screen and (max-width: 1280px) {
       :root {
-        --image1-width: 50vw;
+        --image1-width: 70vw;
       }
 
-      /* No blue on mobile */
-      .image1, .image2 {
+      /* Remove blur on mobile */
+      .image1,
+      .image2 {
         filter: blur(0);
       }
     }
