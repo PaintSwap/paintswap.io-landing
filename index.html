@@ -5,26 +5,27 @@
   <title>PaintSwap.io</title>
   <meta name="description" content="PaintSwap">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="icon.svg">
   <style>
     :root {
-      --image1-width: 30vw;
+      --image1-width: 50vmin
     }
 
     body {
       background-color: black;
       margin: 0;
       height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
+      overflow: hidden
     }
 
     .container {
-      position: relative;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       width: var(--image1-width);
       height: var(--image1-width);
-      overflow: visible;
+      overflow: visible
     }
 
     /* Glow effect using a pseudo-element */
@@ -71,6 +72,7 @@
       filter: blur(20px);
       transition: filter 1s ease-in-out;
       animation: rotate 10s linear infinite;
+      will-change: transform
     }
 
     .image2 {
@@ -91,7 +93,7 @@
 
     @media only screen and (max-width: 1280px) {
       :root {
-        --image1-width: 70vw;
+        --image1-width: 70vmin
       }
 
       /* Remove blur on mobile */
@@ -103,7 +105,7 @@
   </style>
 </head>
 <body>
-  <a href="https://paintswap.finance" target="_blank" rel="noopener noreferrer">
+  <a href="https://paintswap.finance">
     <div class="container">
       <img src="icon.svg" alt="PS Icon" class="image1">
       <img src="eyes.svg" alt="Eyes" class="image2">
