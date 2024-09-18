@@ -1,57 +1,104 @@
 <!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>PaintSwap.io</title>
   <meta name="description" content="PaintSwap">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
+    :root {
+      --image1-width: 20vw;
+    }
+
+    @media only screen and (max-width: 600px) {
       :root {
-          --image1-width: 20vw;
+        --image1-width: 50vw;
       }
+    }
 
-      @media only screen and (max-width: 600px) {
-          :root {
-              --image1-width: 50vw;
-          }
-      }
+    body {
+      background-color: black;
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-      body {
-          background-color: black;
-          margin: 0;
-          height: 100vh;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-      }
+    .container {
+      position: relative;
+      width: var(--image1-width);
+      height: var(--image1-width);
+    }
 
-      .container {
-          position: relative;
-          width: var(--image1-width);
-          height: var(--image1-width); /* Maintain 1:1 aspect ratio */
-      }
+    /* Glow effect using a pseudo-element */
+    .container::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      height: 100%;
+      transform: translate(-50%, -50%);
+      background: url('icon.svg') no-repeat center center;
+      background-size: contain;
+      filter: blur(60px);
+      opacity: 0.5;
+      z-index: -1;
+      transition: filter 1s ease-in-out, opacity 1s ease-in-out;
+    }
 
-      .image1, .image2 {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-      }
+    /* Reduce blur on hover */
+    .container:hover::before {
+      filter: blur(40px);
+      opacity: 0.4;
+    }
 
-      .image1 {
-          width: 100%;
-          height: 100%;
+    /* Keyframes for rotation */
+    @keyframes rotate {
+      from {
+        transform: translate(-50%, -50%) rotate(0deg);
       }
+      to {
+        transform: translate(-50%, -50%) rotate(360deg);
+      }
+    }
 
-      .image2 {
-          width: calc(0.25 * var(--image1-width));
-          height: calc(0.25 * var(--image1-width));
-      }
+    .image1 {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      filter: blur(20px);
+      transition: filter 1s ease-in-out;
+      animation: rotate 10s linear infinite;
+    }
+
+    .image2 {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: calc(0.25 * var(--image1-width));
+      height: calc(0.25 * var(--image1-width));
+      filter: blur(20px);
+      transition: filter 1s ease-in-out;
+    }
+
+    .container:hover .image1,
+    .container:hover .image2 {
+      filter: blur(0);
+    }
   </style>
 </head>
 <body>
+  <a href="https://paintswap.finance" target="_blank" rel="noopener noreferrer">
     <div class="container">
-        <img src="icon.svg" alt="PS Icon" class="image1">
-        <img src="eyes.svg" alt="Eyes" class="image2">
+      <img src="icon.svg" alt="PS Icon" class="image1">
+      <img src="eyes.svg" alt="Eyes" class="image2">
     </div>
+  </a>
 </body>
 </html>
