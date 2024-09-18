@@ -10,12 +10,6 @@
       --image1-width: 20vw;
     }
 
-    @media only screen and (max-width: 600px) {
-      :root {
-        --image1-width: 50vw;
-      }
-    }
-
     body {
       background-color: black;
       margin: 0;
@@ -90,6 +84,17 @@
     .container:hover .image1,
     .container:hover .image2 {
       filter: blur(0);
+    }
+
+    @media only screen and (max-width: 1280px) {
+      :root {
+        --image1-width: 50vw;
+      }
+
+      /* No blue on mobile */
+      .image1, .image2 {
+        filter: blur(0);
+      }
     }
   </style>
 </head>
